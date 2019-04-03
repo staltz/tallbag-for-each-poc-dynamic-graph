@@ -36,7 +36,7 @@ function StreamGraph(props) {
       metadata.source.map(m => React.createElement(StreamGraph, {metadata: m})),
     );
   } else if (metadata.source) {
-    parent = React.createContext(StreamGraph, {metadata: metadata.source});
+    parent = React.createElement(StreamGraph, {metadata: metadata.source});
   }
 
   let data = null;
@@ -52,10 +52,12 @@ function StreamGraph(props) {
     );
   }
 
-  return React.createElement('div', {style: {paddingBottom: 20}}, [
+  return React.createElement(
+    'div',
+    {style: {paddingBottom: 20}},
     parent,
-    React.createElement('h3', [metadata.name, data]),
-  ]);
+    React.createElement('h3', {}, metadata.name, data),
+  );
 }
 
 const forEach = operation => source => {
